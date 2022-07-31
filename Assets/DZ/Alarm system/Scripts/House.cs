@@ -8,7 +8,7 @@ public class House : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out ThiefMovement thief))
+        if (other.TryGetComponent(out Thief thief))
         {
             OnHouseEntered?.Invoke();
         }
@@ -16,7 +16,7 @@ public class House : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.TryGetComponent(out ThiefMovement thief))
+        if (other.TryGetComponent(out Thief thief))
         {
             OnHouseOuted?.Invoke();
         }
