@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Thief : MonoBehaviour
+public class ThiefMovement : MonoBehaviour
 {
     [SerializeField] private Transform _targetPosition;
     [SerializeField] private Transform _startPosition;
