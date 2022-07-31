@@ -6,6 +6,7 @@ public class Spawner : MonoBehaviour
 {
     [SerializeField] private Enemy _enemy;
     [SerializeField] private float _timeToSpawn;
+
     private Transform[] _points;
 
     private void Start()
