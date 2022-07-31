@@ -18,37 +18,37 @@ public class Siren : MonoBehaviour
 
     private void OnEnable()
     {
-        _house.OnEntered += OnStartSiren;
-        _house.OnOuted += OnStopSiren;
+        _house.OnEntered += StartSound;
+        _house.OnOuted += StopSound;
     }
 
     private void OnDisable()
     {
-        _house.OnEntered -= OnStartSiren;
-        _house.OnOuted -= OnStopSiren;
+        _house.OnEntered -= StartSound;
+        _house.OnOuted -= StopSound;
     }
 
-    public void OnStartSiren()
+    public void StartSound()
     {
         if (_currentCoroutine != null)
         {
             StopCoroutine(_currentCoroutine);
         }
 
-        _currentCoroutine = StartCoroutine(PlaySiren(_maxVolume));
+        _currentCoroutine = StartCoroutine(PlaySound(_maxVolume));
     }
 
-    public void OnStopSiren()
+    public void StopSound()
     {
         if (_currentCoroutine != null)
         {
             StopCoroutine(_currentCoroutine);
         }
 
-        _currentCoroutine = StartCoroutine(PlaySiren(_minVolume));
+        _currentCoroutine = StartCoroutine(PlaySound(_minVolume));
     }
 
-    private IEnumerator PlaySiren(int targetVolume)
+    private IEnumerator PlaySound(int targetVolume)
     {
         if (_sirenAudio.isPlaying == false)
         {
