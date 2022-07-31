@@ -1,14 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Thief : MonoBehaviour
 {
     [SerializeField] private Transform _targetPosition;
     [SerializeField] private Transform _startPosition;
-    private Transform _currentTargetPosition;
     [SerializeField] private float _speed;
 
+    private Transform _currentTargetPosition;
+    
     private void Start()
     {
         _currentTargetPosition = _targetPosition;

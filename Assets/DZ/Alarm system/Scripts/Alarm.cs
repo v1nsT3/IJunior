@@ -5,6 +5,7 @@ public class Alarm : MonoBehaviour
 {
     [SerializeField] private float _delay;
     [SerializeField] private AudioSource _sirenAudio;
+
     private int _maxVolume = 1;
     private int _minVolume = 0;
     private Coroutine _currentCoroutine;
