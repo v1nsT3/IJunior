@@ -3,14 +3,14 @@ using UnityEngine.Events;
 
 public class House : MonoBehaviour
 {
-    public event UnityAction OnHouseEntered;
-    public event UnityAction OnHouseOuted;
+    public event UnityAction OnEntered;
+    public event UnityAction OnOuted;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent(out Thief thief))
         {
-            OnHouseEntered?.Invoke();
+            OnEntered?.Invoke();
         }
     }
 
@@ -18,7 +18,7 @@ public class House : MonoBehaviour
     {
         if (other.TryGetComponent(out Thief thief))
         {
-            OnHouseOuted?.Invoke();
+            OnOuted?.Invoke();
         }
     }
 }

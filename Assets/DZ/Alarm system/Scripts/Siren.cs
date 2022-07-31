@@ -18,14 +18,14 @@ public class Siren : MonoBehaviour
 
     private void OnEnable()
     {
-        _house.OnHouseEntered += OnStartSiren;
-        _house.OnHouseOuted += OnStopSiren;
+        _house.OnEntered += OnStartSiren;
+        _house.OnOuted += OnStopSiren;
     }
 
     private void OnDisable()
     {
-        _house.OnHouseEntered -= OnStartSiren;
-        _house.OnHouseOuted -= OnStopSiren;
+        _house.OnEntered -= OnStartSiren;
+        _house.OnOuted -= OnStopSiren;
     }
 
     public void OnStartSiren()
