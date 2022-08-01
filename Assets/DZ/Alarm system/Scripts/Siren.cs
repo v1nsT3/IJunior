@@ -19,33 +19,21 @@ public class Siren : MonoBehaviour
     private void OnEnable()
     {
         _house.OnEntered += StartSound;
-        _house.OnOuted += StopSound;
     }
 
     private void OnDisable()
     {
         _house.OnEntered -= StartSound;
-        _house.OnOuted -= StopSound;
     }
 
-    public void StartSound()
+    public void StartSound(bool isStart)
     {
         if (_currentCoroutine != null)
         {
             StopCoroutine(_currentCoroutine);
         }
 
-        _currentCoroutine = StartCoroutine(PlaySound(_maxVolume));
-    }
-
-    public void StopSound()
-    {
-        if (_currentCoroutine != null)
-        {
-            StopCoroutine(_currentCoroutine);
-        }
-
-        _currentCoroutine = StartCoroutine(PlaySound(_minVolume));
+        _currentCoroutine = StartCoroutine(PlaySound(isStart ? _maxVolume : _minVolume));
     }
 
     private IEnumerator PlaySound(int targetVolume)
@@ -56,8 +44,8 @@ public class Siren : MonoBehaviour
         }
 
         while (_sirenAudio.volume != targetVolume)
-        { 
-            _sirenAudio.volume = targetVolume == _minVolume ?  _sirenAudio.volume - Time.deltaTime / _delay : _sirenAudio.volume + Time.deltaTime / _delay;
+        {
+            _sirenAudio.volume = Mathf.MoveTowards(_sirenAudio.volume, targetVolume, Time.deltaTime / _delay);
             yield return null;
         }
 
