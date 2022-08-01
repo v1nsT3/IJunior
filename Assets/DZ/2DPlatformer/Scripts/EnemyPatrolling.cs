@@ -11,7 +11,7 @@ public class EnemyPatrolling : MonoBehaviour
 
     private void Start()
     {
-        _animator.SetFloat("speed", _speed);
+        _animator.SetFloat(AnimatorPersonController.Params.Speed, _speed);
     }
 
     private void Update()

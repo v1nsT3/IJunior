@@ -34,11 +34,11 @@ public class RogueMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            _animator.SetTrigger("attack");
+            _animator.SetTrigger(AnimatorPersonController.Params.Attack);
         }
 
         transform.rotation = Quaternion.Lerp(Quaternion.identity, new Quaternion(0, _rotationY, 0, 0), _currentSpeed >= 0 ? 0 : 1);
-        _animator.SetFloat("speed", Mathf.Abs(_currentSpeed));
+        _animator.SetFloat(AnimatorPersonController.Params.Speed, Mathf.Abs(_currentSpeed));
         transform.position += new Vector3(_currentSpeed, 0, 0);
     }
 }
