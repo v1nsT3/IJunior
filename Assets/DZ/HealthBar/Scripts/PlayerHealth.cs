@@ -1,29 +1,33 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] private Slider _healthBar;
+    [SerializeField] private float _maxHealth;
+    [SerializeField] private float _minHealth;
 
-    private float _maxHealth = 100;
-    private float _minHealth = 0;
+    public event UnityAction<float> OnChangeHealth;
+
+    private float _currentHealth;
+
+    public float MaxHealth => _maxHealth;
+    public float MinHealth => _minHealth;
+
 
     private void Start()
     {
-        _healthBar.minValue = _minHealth;
-        _healthBar.maxValue = _maxHealth;
-        _healthBar.value = _maxHealth;
+        _currentHealth = _maxHealth;
     }
 
     public void Increase(int value)
     {
-        _healthBar.value += value;
+        _currentHealth = Mathf.Clamp(_currentHealth + value, _minHealth, _maxHealth);
+        OnChangeHealth?.Invoke(_currentHealth);
     }
 
     public void Decrease(int value)
     {
-        _healthBar.value -= value;
+        _currentHealth = Mathf.Clamp(_currentHealth - value, _minHealth, _maxHealth);
+        OnChangeHealth?.Invoke(_currentHealth);
     }
 }
