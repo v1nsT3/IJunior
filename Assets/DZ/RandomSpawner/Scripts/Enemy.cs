@@ -1,5 +1,9 @@
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+namespace DZ2dPlatformer
 {
+    public class Enemy : MonoBehaviour
+    {
+    }
 }
+
